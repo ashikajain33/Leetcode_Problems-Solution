@@ -1,0 +1,15 @@
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+        wordDict=set(wordDict)
+        res=[]
+        def backtrack(sub,i):
+            if i == len(s):
+                res.append(sub.strip())
+                return
+            else:
+                for j in range(i,len(s)):
+                    if s[i:j+1] in wordDict:
+                        backtrack(sub+s[i:j+1]+" ",j+1)
+
+        backtrack("",0)
+        return res
